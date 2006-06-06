@@ -1,6 +1,8 @@
 " Vim syntax file
 " Language:     MoinMoin
 " Maintainer:   Michael Lamertz <mike@perl-ronin.de>
+" Contributors: David O'Callaghan <david.ocallaghan@cs.tcd.ie>
+"               Tony Garland <Tony.Garland@fluke.com>
 " Last Change:  $Id: moin.vim,v 1.4 2005/04/28 08:14:19 mlamertz Exp $
 
 " Bugs:         Parsing of mixed bold-italic not yet implemented
@@ -32,7 +34,7 @@ syn match       moinMacro               /\[\{2}.\{-}\]\{2}/
 syn region      moinPreformatted        start=/{{{/ end=/}}}/
 
 " Links
-syn match       moinWikiWord            /\(\w\+:\)\?\u[a-z0-9]\+\u[a-z0-9]\+/
+syn match       moinWikiWord            /\(\w\+:\)\?\u[a-z0-9]\+\u[a-z0-9]\+\(\u[a-z0-9]\+\)*/
 syn match       moinBracketLink         /\[[^[\]]\+\]/
 syn match       moinSubLink             /\(\w\+\|\.\.\)\?\// nextgroup=moinWikiWord
 syn match       moinNormalURL           /\w\+:\/\/\S\+/
@@ -74,6 +76,7 @@ if version >= 508 || !exists("did_acedb_syn_inits")
     HiLink      moinSuperscript         Identifier
     HiLink      moinTypewriter          Identifier
     HiLink      moinMacro               Define
+    HiLink      moinPragma              Define
 
     HiLink      moinPreformatted        String
 
@@ -94,7 +97,6 @@ if version >= 508 || !exists("did_acedb_syn_inits")
     HiLink      moinRule                Special
 
     HiLink      moinComment             Comment
-    HiLink      moinPragma              Comment
 
   delcommand HiLink
 endif
